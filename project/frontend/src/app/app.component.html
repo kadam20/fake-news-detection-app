@@ -1,6 +1,10 @@
-<app-header></app-header>
-<div class="grid grid-cols-4 p-7 gap-7 app-container">
-    <div class="col-span-3">
-        <router-outlet></router-outlet>
-    </div>
+<div>
+  <app-header></app-header>
+  @if(loading()){
+  <app-welcome></app-welcome>
+  } @else {
+  <div class="flex flex-col p-10 h-[92vh]">
+    <router-outlet></router-outlet>
+  </div>
+  }
 </div>

@@ -1,20 +1,22 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
-import { HeaderComponent } from './components/header/header.component';
+import { HeaderComponent } from './components/_layout/header/header.component';
+import { WelcomeComponent } from './components/_layout/welcome/welcome.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, ButtonModule, HeaderComponent],
+  imports: [RouterOutlet, ButtonModule, HeaderComponent, WelcomeComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
-  title = 'frontend';
-
+  loading = signal<boolean>(true)
 
   ngOnInit(): void {
-    console.log('app connect')
+    setTimeout(() => {
+      this.loading.set(false);
+    }, 2000);
   }
 }

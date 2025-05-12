@@ -1,0 +1,54 @@
+<div class="card h-full rounded-xl p-7 flex gap-8 flex-col">
+  <div class="flex items-center gap-3">
+    <i class="pi pi-link text-3xl"></i>
+    <b class="text-3xl">Article Text Analyzer</b>
+  </div>
+  <div>
+    Paste a link to a news article and press "Analyze" — we’ll scrape the
+    content and check if it’s likely real or fake. This tool is experimental.
+    Results may be inaccurate, and we do not take responsibility for any actions
+    based on them.
+  </div>
+  <div class="flex gap-3 flex-row">
+    <input
+      pInputText
+      class="w-full"
+      [(ngModel)]="textValue"
+      type="text"
+      variant="filled"
+      placeholder="Insert the article link here"
+    />
+    <p-button
+      label="Analyze"
+      icon="pi pi-search"
+      [loading]="pageState() === 'loading'"
+      [disabled]="textValue().length === 0"
+      (onClick)="analyzeText()"
+    />
+  </div>
+  @if(pageState() === 'loading'){
+  <div>
+    <div class="mb-5">
+      <span class="text-4xl pb-3">Loading...</span>
+    </div>
+    <p-progressbar [value]="value()" />
+  </div>
+  } @else if (pageState() === 'result') {
+  <div class="flex flex-col gap-5 justify-center items-center h-[70%]">
+    @if(isValid()){
+    <i
+      class="pi pi-thumbs-up-fill"
+      style="font-size: 10rem; color: #6cba59"
+    ></i>
+    <span class="text-4xl">This article is valid</span>
+    }@else {
+    <i
+      class="pi pi-thumbs-down-fill"
+      style="font-size: 10rem; color: #f87171"
+    ></i>
+    <span class="text-4xl">This article is not valid</span>
+    }
+    <span class="text-xl">Confidence: {{ precision() }}%</span>
+  </div>
+  }
+</div>
