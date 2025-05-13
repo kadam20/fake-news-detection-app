@@ -41,7 +41,7 @@ export class ArticleComponent {
     this.ngZone.runOutsideAngular(() => {
       this.interval = setInterval(() => {
         this.ngZone.run(() => {
-          const newValue = this.value() + Math.floor(Math.random() * 30) + 1;
+          const newValue = this.value() + Math.floor(Math.random() * 20) + 1;
           this.value.set(newValue);
           console.log('New value:', newValue);
           if (this.value() >= 100) {
