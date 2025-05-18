@@ -1,9 +1,0 @@
-.app-header {
-  height: 6.5vh;
-}
-
-@media screen and (max-width: 720px) {
-  :host ::ng-deep .p-button-label {
-    display: none;
-  }
-}
